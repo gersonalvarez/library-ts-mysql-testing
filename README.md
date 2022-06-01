@@ -1,6 +1,6 @@
-# Base para proyectos en TypeScript con MySQL :writing_hand:
+# Tests para crear una base de datos desde cero
 
-Este template esta dirigido a todos aquellos que inician en `TyepScript` un proyecto nuevo. Para usarlo, simplemente tienes hacer un `fork` o usar el botón `use this template`.
+Este practico contiene una serie de tests que se deben superar, construyendo una base de datos desde cero en MySQL
 
 ## Instalación y ejecución
 
