@@ -1,5 +1,5 @@
 import { createPool, PoolOptions } from "mysql2/promise";
-import { Autor } from "./types";
+import { Autor, Libro } from "./types";
 
 class DBLibrary {
   private readonly config: PoolOptions;
@@ -20,9 +20,21 @@ class DBLibrary {
     return tableNames;
   }
 
-  async getAutors(): Promise<Autor[]> {
+  async getAuthors(): Promise<Autor[]> {
     const autors: Autor[] = await this.queryDB(`select * from autor`);
     return autors;
+  }
+
+  async getBooks(): Promise<Libro[]> {
+    const libros: Libro[] = await this.queryDB(`select * from libro`);
+    return libros;
+  }
+
+  async getBooksByAuthor(author: string): Promise<Libro[]> {
+    const libros: Libro[] = await this.queryDB(
+      `select * from libro where autor_id = (select id from autor where nombre = "${author}")`
+    );
+    return libros;
   }
 
   private async queryDB(query: string) {
