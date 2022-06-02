@@ -11,9 +11,12 @@ class DBLibrary {
     };
   }
 
-  async getTables(): Promise<{ Table: string }[]> {
-    const tables = await this.queryDB(`show tables`);
-    return tables;
+  async getTables(): Promise<string[]> {
+    const tables: { Tables_in_biblioteca: string }[] = await this.queryDB(
+      `show tables`
+    );
+    const tableNames = tables.map((table) => table.Tables_in_biblioteca);
+    return tableNames;
   }
 
   private async queryDB(query: string) {
