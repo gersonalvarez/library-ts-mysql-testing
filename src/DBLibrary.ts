@@ -1,4 +1,5 @@
 import { createPool, PoolOptions } from "mysql2/promise";
+import { Autor } from "./types";
 
 class DBLibrary {
   private readonly config: PoolOptions;
@@ -17,6 +18,11 @@ class DBLibrary {
     );
     const tableNames = tables.map((table) => table.Tables_in_biblioteca);
     return tableNames;
+  }
+
+  async getAutors(): Promise<Autor[]> {
+    const autors: Autor[] = await this.queryDB(`select * from autor`);
+    return autors;
   }
 
   private async queryDB(query: string) {
