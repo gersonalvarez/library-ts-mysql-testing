@@ -32,7 +32,7 @@ class DBLibrary {
 
   async getBooksByAuthor(author: string): Promise<Libro[]> {
     const libros: Libro[] = await this.queryDB(
-      `select * from libro where autor_id = (select id from autor where nombre = "${author}")`
+      `select * from libro where autorid = (select id from autor where nombre = "${author}")`
     );
     return libros;
   }
